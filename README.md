@@ -52,8 +52,10 @@ def test_youtube_music_pagina_inicial(page):
     # Validar botão de login
     expect(page.get_by_role('button', name='Fazer login')).to_be_visible()
 ```
+---
 
-👨‍🏫 Créditos e Agradecimentos
-Este projeto de automação (Playwright/PyTest) foi construído e inspirado nos ensinamentos e padrões de qualidade do professor Fernando Papito.
+## 👨‍🏫 Créditos e Agradecimentos
+
+Este projeto de automação (Playwright/PyTest) foi construído e inspirado nos ensinamentos e padrões de qualidade do professor **Fernando Papito**.
 
 Saúde!
