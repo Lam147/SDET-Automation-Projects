@@ -1,66 +1,68 @@
-# 🧪 Testes de Qualidade e Automação (SDET & Playwright)
+# Testes de Qualidade e Automação (SDET & Playwright)
 
-Este repositório demonstra proficiência em automação de testes End-to-End (E2E), aplicando uma metodologia SDET rigorosa com as ferramentas Playwright e PyTest.
+Este repositório demonstra **automação de testes End-to-End (E2E)** com **Playwright + PyTest**, aplicando metodologia **SDET rigorosa**, com foco em **estabilidade, acessibilidade e tratamento de falhas comuns** (como `strict mode violation`).
 
 ---
 
-## 1. 🧪 Projeto E2E: YouTube Music - Página Inicial
+## 1. Projeto E2E: YouTube Music - Página Inicial
 
-Este projeto valida as funcionalidades e a robustez dos elementos da **página inicial do YouTube Music**, garantindo a qualidade da experiência do usuário em diferentes fluxos de navegação.
+Validação completa da **página inicial do YouTube Music**, cobrindo:
+- Carregamento da página
+- Elementos principais (barra lateral, categorias, botões)
+- Navegação entre seções
+- Interatividade (botões de login, reprodução, links)
 
-### 🎯 Metodologia e Desafios Técnicos
+---
 
-A automação seguiu as melhores práticas de SDET:
+### Metodologia e Desafios Técnicos
 
-* **Prioridade `getByRole()`:** Utilização de localizadores de acessibilidade (como `get_by_role('link', name='Início')`) para máxima estabilidade e conformidade com WCAG.
-* **Tratamento de Localizadores:** O código foi ajustado para resolver **conflitos de `strict mode violation`** (onde múltiplos elementos correspondiam ao mesmo localizador), garantindo o direcionamento correto dos elementos através do uso de métodos como `.first`.
-* **Asserções Robustas:** Uso de `expect()` nativo do Playwright com *auto-retry* para estabilidade.
+| Desafio | Solução Aplicada |
+|-------|------------------|
+| **`strict mode violation`** (múltiplos elementos com mesmo `get_by_role`) | Uso de `.first` ou escopo com `#sections` / `#left-content` |
+| **Elementos dinâmicos ou ausentes** | Substituição por seletores mais robustos: `aria-label`, `has-text`, `level=2` em headings |
+| **Botões de reprodução com texto variável** | Uso de `button[aria-label*="Reproduzir"]` |
+| **Conteúdo condicional (ex: "Filmes")** | Validação genérica com `get_by_role('heading', level=2)` |
 
-### ✅ Resultados Detalhados da Execução (100% Sucesso)
+> **Prioridade máxima**: Localizadores baseados em **acessibilidade** (`get_by_role`, `aria-label`, `WCAG-compliant`)
 
-O script validou com sucesso **4 casos de teste**, demonstrando cobertura de navegação, carregamento e interatividade:
+---
 
-| ID do Teste | Objetivo Principal | Função no Código | Resultado |
-| :--- | :--- | :--- | :--- |
-| **CT001** | Validação de Carregamento e Elementos Principais. | `test_youtube_music_pagina_inicial` | **PASS** |
-| **CT002** | Navegação e Seleção de Categorias de Música. | `test_youtube_music_navegacao_categorias` | **PASS** |
-| **CT003** | Teste de Transição na Barra Lateral (Início/Explorar). | `test_youtube_music_navegacao_lateral` | **PASS** |
-| **CT004** | Validação da Presença de Elementos Interativos (Botões). | `test_youtube_music_elementos_interativos` | **PASS** |
+### Resultados da Execução (100% Sucesso)
 
-**Saída de Execução (Console):**
+**4 casos de teste** executados com **sucesso total** após correções:
 
+| ID | Objetivo | Função | Status |
+|----|--------|--------|--------|
+| **CT001** | Carregamento e elementos principais | `test_youtube_music_pagina_inicial` | **PASS** |
+| **CT002** | Navegação entre categorias | `test_youtube_music_navegacao_categorias` | **PASS** |
+| **CT003** | Navegação na barra lateral | `test_youtube_music_navegacao_lateral` | **PASS** |
+| **CT004** | Elementos interativos (botões, links) | `test_youtube_music_elementos_interativos` | **PASS** |
+
+**Saída final do console (execução completa):**
 ```bash
-============================= test session starts ============================== 
-... 
-playwright/e2e/test_youtube_music.py::test_youtube_music_pagina_inicial[chromium] PASSED [ 25%] 
-playwright/e2e/test_youtube_music.py::test_youtube_music_navegacao_categorias[chromium] PASSED [ 50%] 
-playwright/e2e/test_youtube_music.py::test_youtube_music_navegacao_lateral[chromium] PASSED [ 75%] 
-playwright/e2e/test_youtube_music.py::test_youtube_music_elementos_interativos[chromium] PASSED [100%] 
-============================== 4 passed in 1X.XXs ==============================
+============================= test session starts ==============================
+platform linux -- Python 3.11.2, pytest-8.4.2, pluggy-1.6.0
+rootdir: /TestBeyond/playwright-pytest
+collected 4 items
+
+playwright/e2e/test_youtube_music.py::test_youtube_music_pagina_inicial[chromium] PASSED [ 25%]
+playwright/e2e/test_youtube_music.py::test_youtube_music_navegacao_categorias[chromium] PASSED [ 50%]
+playwright/e2e/test_youtube_music.py::test_youtube_music_navegacao_lateral[chromium] PASSED [ 75%]
+playwright/e2e/test_youtube_music.py::test_youtube_music_elementos_interativos[chromium] PASSED [100%]
+
+============================== 4 passed in XX.XXs ==============================
 ```
+---
 
-💻 Exemplo de Código (Trecho)
-O código demonstra o uso de localizadores robustos e asserções claras.
+Aprendizados & Boas Práticas Aplicadas
 
-@pytest.mark.e2e
-def test_youtube_music_pagina_inicial(page):
-    # Navegar para o YouTube Music e validar a URL
-    page.goto('[https://music.youtube.com/](https://music.youtube.com/)')
-    expect(page).to_have_url('[https://music.youtube.com/](https://music.youtube.com/)')
-    
-```    
-    # Validar elementos da barra lateral (usando .first para resolver o strict mode)
-    expect(page.get_by_role('link', name='Início').first).to_be_visible()
-    expect(page.get_by_role('link', name='Explorar').first).to_be_visible()
-    
-    # Validar que a barra de categorias está visível
-    expect(page.get_by_role('tab', name='Podcasts')).to_be_visible()
-    
-    # Validar botão de login
-    expect(page.get_by_role('button', name='Fazer login')).to_be_visible()
-```
+get_by_role() + .first → evita strict mode violation
+aria-label e level=2 → mais estável que texto exato
+locator(...).first → garante que pelo menos 1 elemento exista
+auto-retry do expect() → tolerância a carregamento assíncrono
 
-👨‍🏫 Créditos e Agradecimentos
-Este projeto de automação (Playwright/PyTest) foi construído e inspirado nos ensinamentos e padrões de qualidade do professor Fernando Papito.
+Créditos e Agradecimentos
+
+Projeto construído com base nos padrões de qualidade SDET ensinados pelo professor Fernando Papito.
 
 Saúde!
