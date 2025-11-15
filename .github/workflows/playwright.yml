@@ -28,7 +28,7 @@ jobs:
 
     - name: Executar testes Playwright
       run: |
-                pytest playwright/e2e/test_youtube_music.py -v --headless --output=playwright-report
+        pytest playwright/e2e/test_youtube_music.py -v --output=playwright-report
 
     - name: Upload do Relatório HTML + Screenshots
       uses: actions/upload-artifact@v4
