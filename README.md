@@ -29,19 +29,26 @@ O script validou com sucesso **4 casos de teste**, demonstrando cobertura de nav
 
 **Saída de Execução (Console):**
 
-============================= test session starts ============================== ... playwright/e2e/test_youtube_music.py::test_youtube_music_pagina_inicial[chromium] PASSED [ 25%] playwright/e2e/test_youtube_music.py::test_youtube_music_navegacao_categorias[chromium] PASSED [ 50%] playwright/e2e/test_youtube_music.py::test_youtube_music_navegacao_lateral[chromium] PASSED [ 75%] playwright/e2e/test_youtube_music.py::test_youtube_music_elementos_interativos[chromium] PASSED [100%] ============================== 4 passed in 1X.XXs ==============================
+```bash
+============================= test session starts ============================== 
+... 
+playwright/e2e/test_youtube_music.py::test_youtube_music_pagina_inicial[chromium] PASSED [ 25%] 
+playwright/e2e/test_youtube_music.py::test_youtube_music_navegacao_categorias[chromium] PASSED [ 50%] 
+playwright/e2e/test_youtube_music.py::test_youtube_music_navegacao_lateral[chromium] PASSED [ 75%] 
+playwright/e2e/test_youtube_music.py::test_youtube_music_elementos_interativos[chromium] PASSED [100%] 
+============================== 4 passed in 1X.XXs ==============================
+```
 
-### 💻 Exemplo de Código (Trecho)
-
+💻 Exemplo de Código (Trecho)
 O código demonstra o uso de localizadores robustos e asserções claras.
 
-```python
 @pytest.mark.e2e
 def test_youtube_music_pagina_inicial(page):
     # Navegar para o YouTube Music e validar a URL
     page.goto('[https://music.youtube.com/](https://music.youtube.com/)')
     expect(page).to_have_url('[https://music.youtube.com/](https://music.youtube.com/)')
     
+```    
     # Validar elementos da barra lateral (usando .first para resolver o strict mode)
     expect(page.get_by_role('link', name='Início').first).to_be_visible()
     expect(page.get_by_role('link', name='Explorar').first).to_be_visible()
@@ -52,10 +59,8 @@ def test_youtube_music_pagina_inicial(page):
     # Validar botão de login
     expect(page.get_by_role('button', name='Fazer login')).to_be_visible()
 ```
----
 
-## 👨‍🏫 Créditos e Agradecimentos
-
-Este projeto de automação (Playwright/PyTest) foi construído e inspirado nos ensinamentos e padrões de qualidade do professor **Fernando Papito**.
+👨‍🏫 Créditos e Agradecimentos
+Este projeto de automação (Playwright/PyTest) foi construído e inspirado nos ensinamentos e padrões de qualidade do professor Fernando Papito.
 
 Saúde!
