@@ -1,8 +1,12 @@
+# 🧪 Portfólio de Engenharia de Qualidade e Automação (SDET & Playwright)
+
+Este repositório consolida projetos e artefatos de teste que demonstram proficiência em automação de testes End-to-End (E2E) com padrões modernos (Playwright/PyTest) e planejamento de qualidade.
+
 ---
 
-## 2. 🧪 Testes de Automação E2E (YouTube Music)
+## 1. 🧪 Testes de Automação E2E (YouTube Music)
 
-Demonstração de proficiência em automação de testes End-to-End, seguindo uma metodologia SDET rigorosa (Exploração Manual + Implementação).
+Demonstração de proficiência na criação de testes End-to-End, seguindo uma metodologia SDET rigorosa (Exploração Manual + Implementação).
 
 ### 🎯 Metodologia SDET
 
@@ -26,8 +30,14 @@ O script validou o fluxo básico do **YouTube Music** com **4 testes E2E bem-suc
 # Executar os testes em modo visível (headed)
 pytest playwright/e2e/test_youtube_music.py -v --headed
 
----
+Cenário de Teste,Objetivo Principal,Artefatos Gerados
+CT001 (Sucesso),Validar a adesão completa com pagamento autorizado.,1. Tabela de Endereço de Entrega. 2. Dados de Cartão Válido.
+CT002 (Falha),Validar o tratamento de erro do sistema (pagamento recusado).,Dados de Cartão Inválido (Saldo Insuficiente).
 
-## 👨‍🏫 Créditos e Agradecimentos
+Campo,Valor
+CEP,04534-011
+Logradouro,Rua Joaquim Floriano
+Cartão,Visa Válido (4242...4242)
 
-Este portfólio de metodologias SDET e scripts de automação (Playwright/PyTest) foi construído e inspirado nos ensinamentos e padrões de qualidade do professor **Fernando Papito**.
+👨‍🏫 Créditos e Agradecimentos
+Este portfólio de metodologias SDET e scripts de automação (Playwright/PyTest) foi construído e inspirado nos ensinamentos e padrões de qualidade do professor Fernando Papito.
