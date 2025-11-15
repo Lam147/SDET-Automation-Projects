@@ -25,3 +25,9 @@ O script validou o fluxo básico do **YouTube Music** com **4 testes E2E bem-suc
 ```bash
 # Executar os testes em modo visível (headed)
 pytest playwright/e2e/test_youtube_music.py -v --headed
+
+---
+
+## 👨‍🏫 Créditos e Agradecimentos
+
+Este portfólio de metodologias SDET e scripts de automação (Playwright/PyTest) foi construído e inspirado nos ensinamentos e padrões de qualidade do professor **Fernando Papito**.
