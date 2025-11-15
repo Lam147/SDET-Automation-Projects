@@ -2,6 +2,7 @@ import pytest
 import re
 from playwright.sync_api import Page, expect
 
+
 @pytest.fixture(scope="function")
 def page_bypass_bot(page: Page):
     page.add_init_script("""
@@ -16,18 +17,22 @@ def page_bypass_bot(page: Page):
     page.wait_for_timeout(5000)
     yield page
 
+
 @pytest.mark.e2e
 def test_homepage_loads(page_bypass_bot: Page):
     expect(page_bypass_bot).to_have_url("https://music.youtube.com/")
+
 
 @pytest.mark.e2e
 def test_sidebar_has_links(page_bypass_bot: Page):
     expect(page_bypass_bot.locator("a[href*='youtube.com']").first).to_be_visible(timeout=20000)
 
+
 @pytest.mark.e2e
 def test_has_play_buttons(page_bypass_bot: Page):
     buttons = page_bypass_bot.locator("button").filter(has_text=re.compile("play|reproduzir", re.I))
-        expect(buttons).to_have_count(greater_than=0, timeout=20000)
+    expect(buttons).to_have_count(greater_than=0, timeout=20000)
+
 
 @pytest.mark.e2e
 def test_has_content_sections(page_bypass_bot: Page):
