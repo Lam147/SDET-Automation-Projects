@@ -27,7 +27,7 @@ def test_sidebar_has_links(page_bypass_bot: Page):
 @pytest.mark.e2e
 def test_has_play_buttons(page_bypass_bot: Page):
     buttons = page_bypass_bot.locator("button").filter(has_text=re.compile("play|reproduzir", re.I))
-    expect(buttons.count()).to_be_greater_than(0)
+        expect(buttons).to_have_count(greater_than=0, timeout=20000)
 
 @pytest.mark.e2e
 def test_has_content_sections(page_bypass_bot: Page):
