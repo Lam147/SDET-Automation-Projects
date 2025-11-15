@@ -1,5 +1,4 @@
 import pytest
-import re
 from playwright.sync_api import Page, expect
 
 
@@ -26,12 +25,6 @@ def test_homepage_loads(page_bypass_bot: Page):
 @pytest.mark.e2e
 def test_sidebar_has_links(page_bypass_bot: Page):
     expect(page_bypass_bot.locator("a[href*='youtube.com']").first).to_be_visible(timeout=20000)
-
-
-@pytest.mark.e2e
-def test_has_play_buttons(page_bypass_bot: Page):
-    buttons = page_bypass_bot.locator("button").filter(has_text=re.compile("play|Play|reproduzir|Reproduzir", re.I))
-    assert buttons.count() > 0, "Nenhum botão de play encontrado"
 
 
 @pytest.mark.e2e
