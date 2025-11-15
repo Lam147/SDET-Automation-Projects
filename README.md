@@ -1,6 +1,6 @@
-# 🧪 Portfólio de Engenharia de Qualidade e Automação (SDET & Playwright)
+# 🧪 Testes de Qualidade e Automação (SDET & Playwright)
 
-Este repositório é dedicado à automação de testes End-to-End (E2E), demonstrando proficiência em **Playwright + PyTest** e na aplicação de uma metodologia SDET rigorosa.
+Este repositório demonstra proficiência em automação de testes End-to-End (E2E), aplicando uma metodologia SDET rigorosa com as ferramentas Playwright e PyTest.
 
 ---
 
@@ -51,9 +51,8 @@ def test_youtube_music_pagina_inicial(page):
     
     # Validar botão de login
     expect(page.get_by_role('button', name='Fazer login')).to_be_visible()
-´´´
 
 👨‍🏫 Créditos e Agradecimentos
 Este projeto de automação (Playwright/PyTest) foi construído e inspirado nos ensinamentos e padrões de qualidade do professor Fernando Papito.
 
-Saúde
+Saúde!
