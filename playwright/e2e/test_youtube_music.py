@@ -31,3 +31,4 @@ def test_category_tabs(page_with_bypass: Page):
 def test_play_buttons(page_with_bypass: Page):
     buttons = page_with_bypass.locator('button[aria-label*="play" i], button[title*="play" i]')
     expect(buttons).to_have_count(greater_than_or_equal=1, timeout=15000)
+    
